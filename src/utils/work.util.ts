@@ -1,13 +1,20 @@
-export const work = (milliseconds: number) => {
-	const startTime = Date.now()
-	while (true) {
-		if (Date.now() - startTime >= milliseconds) {
-			break
-		}
-		// Perform some meaningless computation to consume CPU cycles
-		let sum = 0
+import os from 'os'
+
+export const work = () => {
+	const cpus = os.cpus().length
+	const loadPerCore = 0.9 / cpus
+
+	const start = Date.now()
+	while (Date.now() - start < 1000) {
+		// Perform a computationally intensive task
 		for (let i = 0; i < 1000000; i++) {
-			sum += Math.random()
+			Math.sqrt(i)
 		}
+
+		// Sleep to control the CPU usage
+		const busyTime = loadPerCore * 1000
+		const sleepTime = 1000 - busyTime
+		const sleepStart = Date.now()
+		while (Date.now() - sleepStart < sleepTime) {}
 	}
 }

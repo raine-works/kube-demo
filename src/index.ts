@@ -11,8 +11,7 @@ app.use(cors({ origin: '*' }))
 
 app.get('/work', async (req, res, next) => {
 	try {
-		console.log(req.path)
-		work(5000)
+		work()
 		return res.status(200).json({ message: 'Working...' })
 	} catch (err) {
 		return next(err)
