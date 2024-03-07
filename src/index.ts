@@ -1,21 +1,23 @@
-import express, { Application } from 'express'
+import express from 'express'
+import expressWs from 'express-ws'
 import cors from 'cors'
-import { work } from './utils/work.util'
+import { runJobs } from './utils/jobs.util.js'
 
 const PORT = process.env.PORT || 8080
 
-const app: Application = express()
+const { app } = expressWs(express())
 
 app.use(express.json())
 app.use(cors({ origin: '*' }))
 
-app.get('/work', async (req, res, next) => {
-	try {
-		work()
-		return res.status(200).json({ message: 'Working...' })
-	} catch (err) {
-		return next(err)
-	}
+app.ws('/work', (ws, req) => {
+	ws.on('message', (msg) => {
+		runJobs(
+			ws,
+			Array.from({ length: 100 }, () => 1e9),
+			4
+		)
+	})
 })
 
 // Catch all

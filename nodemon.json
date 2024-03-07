@@ -1,5 +1,7 @@
 {
-	"watch": ["src/*"],
-	"exec": "node ./.build/index.js",
+	"watch": [
+		"src/*"
+	],
+	"exec": "pnpm build && node ./.build",
 	"ext": "ts"
 }
