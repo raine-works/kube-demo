@@ -6,7 +6,7 @@ metadata:
         nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
     rules:
-        - host: kube-demo.raineworks.com
+        - host: kube-demo.lab.raineworks.com
           http:
               paths:
                   - path: /

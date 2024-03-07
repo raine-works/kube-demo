@@ -18,14 +18,14 @@ spec:
                 - name: dockerconfig
             containers:
                 - name: worker
-                  image: docker.pkg.github.com/raine-works/kube-demo/worker:latest
+                  image: ghcr.io/raine-works/kube-demo/worker:latest
                   imagePullPolicy: Always
                   ports:
                       - containerPort: 8080
                   resources:
                       requests:
-                          memory: '32Mi' # Requesting 32 MiB of memory
-                          cpu: '100m' # Requesting 100 millicpu (0.1 of a CPU core)
+                          cpu: '500m'
+                          memory: '50Mi'
                       limits:
-                          memory: '64Mi' # Limiting memory usage to 64 MiB
-                          cpu: '200m' # Limiting CPU usage to 200 millicpu (0.2 of a CPU core)
+                          cpu: '2000m'
+                          memory: '500Mi'

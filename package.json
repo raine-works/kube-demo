@@ -16,9 +16,9 @@
 		"express": "^4.18.3"
 	},
 	"scripts": {
-		"docker:auth": "echo $GITHUB_TOKEN | docker login docker.pkg.github.com -u raine-works --password-stdin",
-		"docker:build": "docker build -t docker.pkg.github.com/raine-works/kube-demo/worker:latest --build-arg PORT=8080 .",
-		"docker:push": "docker push docker.pkg.github.com/raine-works/kube-demo/worker:latest",
+		"docker:auth": "echo $(gh auth token) | docker login ghcr.io -u raine-works --password-stdin",
+		"docker:build": "docker build -t ghcr.io/raine-works/kube-demo/worker:latest --build-arg PORT=8080 .",
+		"docker:push": "docker push ghcr.io/raine-works/kube-demo/worker:latest",
 		"build": "node esbuild",
 		"dev": "nodemon",
 		"start": "node .build"

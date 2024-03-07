@@ -9,10 +9,14 @@ const app: Application = express()
 app.use(express.json())
 app.use(cors({ origin: '*' }))
 
-app.get('/work', async (_req, res) => {
-	return work(5000).then(() => {
+app.get('/work', async (req, res, next) => {
+	try {
+		console.log(req.path)
+		work(5000)
 		return res.status(200).json({ message: 'Working...' })
-	})
+	} catch (err) {
+		return next(err)
+	}
 })
 
 // Catch all

@@ -1,4 +1,4 @@
-export const work = async (milliseconds: number) => {
+export const work = (milliseconds: number) => {
 	const startTime = Date.now()
 	while (true) {
 		if (Date.now() - startTime >= milliseconds) {
