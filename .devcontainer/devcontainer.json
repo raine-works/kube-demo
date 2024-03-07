@@ -16,7 +16,10 @@
 	"otherPortsAttributes": {
 		"onAutoForward": "ignore"
 	},
-	"mounts": ["source=${env:HOME}${env:USERPROFILE}/.config/gh,target=/home/${localEnv:USER}/.config/gh,type=bind"],
+	"mounts": [
+		"source=${env:HOME}${env:USERPROFILE}/.config/gh,target=/home/${localEnv:USER}/.config/gh,type=bind",
+		"source=${env:HOME}${env:USERPROFILE}/.kube,target=/home/${localEnv:USER}/.kube,type=bind"
+	],
 	"postAttachCommand": "git config --global diff.tool ...",
 	"postStartCommand": "pnpm config set store-dir ~/.pnpm-store && pnpm setup",
 	"customizations": {

@@ -24,3 +24,4 @@ COPY --from=build /app/.build /app/.build
 
 EXPOSE ${ARG}
 CMD [ "pnpm", "start" ]
+LABEL org.opencontainers.image.source="https://github.com/raine-works/kube-demo"
