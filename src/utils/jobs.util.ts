@@ -15,7 +15,7 @@ export const runJobs = async (ws: any, jobs: number[], workers: number) => {
 		const worker = new Worker(resolve('.build/utils/worker.util.js'))
 		worker.postMessage(data)
 		worker.on('message', ({ tick, tock }) => {
-			ws.send(`Thread ${i} executed in ${(tock - tick) / 1000} seconds...`)
+			ws.send(`Thread ${i} executed in ${Math.ceil((tock - tick) / 1000)} seconds...`)
 		})
 	})
 }
