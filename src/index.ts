@@ -10,12 +10,12 @@ const { app } = expressWs(express())
 app.use(express.json())
 app.use(cors({ origin: '*' }))
 
-app.ws('/work', (ws, req) => {
-	ws.on('message', (msg) => {
+app.ws('/work', (ws, _req) => {
+	ws.on('message', (workers: number) => {
 		runJobs(
 			ws,
 			Array.from({ length: 100 }, () => 1e9),
-			4
+			workers
 		)
 	})
 })
