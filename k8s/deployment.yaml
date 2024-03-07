@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: demo-app
+    labels:
+        app: demo-app
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            app: demo-app
+    template:
+        metadata:
+            labels:
+                app: demo-app
+        spec:
+            containers:
+                - name: demo-app
+                  image: your-image:tag
+                  ports:
+                      - containerPort: 8080
+                  resources:
+                      requests:
+                          memory: '32Mi' # Requesting 32 MiB of memory
+                          cpu: '100m' # Requesting 100 millicpu (0.1 of a CPU core)
+                      limits:
+                          memory: '64Mi' # Limiting memory usage to 64 MiB
+                          cpu: '200m' # Limiting CPU usage to 200 millicpu (0.2 of a CPU core)

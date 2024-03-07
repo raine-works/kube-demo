@@ -1,0 +1,32 @@
+{
+	"name": "Kube Demo",
+	"build": {
+		"dockerfile": "Dockerfile",
+		"context": ".",
+		"args": {
+			"USERNAME": "${localEnv:USER}"
+		}
+	},
+	"remoteUser": "${localEnv:USER}",
+	"features": {
+		"ghcr.io/devcontainers/features/docker-in-docker:2": {},
+		"ghcr.io/devcontainers/features/github-cli:1": {}
+	},
+	"forwardPorts": [8080],
+	"otherPortsAttributes": {
+		"onAutoForward": "ignore"
+	},
+	"mounts": ["source=${env:HOME}${env:USERPROFILE}/.config/gh,target=/home/${localEnv:USER}/.config/gh,type=bind"],
+	"postAttachCommand": "git config --global diff.tool ...",
+	"postStartCommand": "pnpm config set store-dir ~/.pnpm-store && pnpm setup",
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"esbenp.prettier-vscode",
+				"yoavbls.pretty-ts-errors",
+				"eamodio.gitlens",
+				"ms-azuretools.vscode-docker"
+			]
+		}
+	}
+}
